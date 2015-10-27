@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+	
+    tools:context="${relativePackage}.${activityClass}" >
+    
+    <Button 
+        android:id="@+id/show_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dip"
+        android:text="显 示"/>
+    <Button 
+        android:id="@+id/hid_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/show_bt"
+        android:text="隐 藏"/>
+    <Button 
+        android:id="@+id/ctrol_bt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/hid_bt"
+        android:text="调用  JS 方法"/>
+    
+    <Button 
+        android:id="@+id/ctrol_bt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/ctrol_bt1"
+        android:text="重新加载网页"/>
+    
+    
+	<Button 
+        android:id="@+id/test_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="Test"/>
+    <WebView
+        android:id="@+id/aimview"
+        android:layout_width="320dip"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true" />
+
+</RelativeLayout>
