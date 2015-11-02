@@ -26977,7 +26977,7 @@ cc.DrawNodeWebGL = cc.Node.extend({
         cc.Node.prototype.ctor.call(this);
         this._buffer = [];
         this._blendFunc = new cc.BlendFunc(cc.SRC_ALPHA, cc.ONE_MINUS_SRC_ALPHA);
-        this._drawColor = cc.color(255,255,255,255);
+        this._drawColor = cc.color(0,0,0,0);
 	    this.init();
     },
     init:function () {
