@@ -21,6 +21,8 @@ import android.webkit.ValueCallback;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 public class MainActivity extends Activity implements OnClickListener {
@@ -33,6 +35,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	private Button hidBt , ctrol_bt2;
 	private int RESULT_CODE = 0;
 	private TextView myTv;
+	private SeekBar speed;
 	ValueCallback<Uri> mUploadMessage;
 	public Handler handler = new Handler(); 
 	static class Location {
@@ -62,12 +65,14 @@ public class MainActivity extends Activity implements OnClickListener {
         ctrol_bt2 = (Button) findViewById(R.id.ctrol_bt2);
         change_bt = (Button) findViewById(R.id.change_bt);
         myTv = (TextView) findViewById(R.id.tv);
+        speed = (SeekBar) findViewById(R.id.speed_bt);
         showBt.setOnClickListener(this);
         hidBt.setOnClickListener(this);
         change_bt.setOnClickListener(this);
         ctrol_bt1.setOnClickListener(this);
         ctrol_bt2.setOnClickListener(this);
-        
+        speed.setProgress(5);
+        speed.setOnSeekBarChangeListener(seekListener);
         
         webaimView = (WebView) findViewById(R.id.aimview);
         webaimView.getSettings().setDefaultTextEncodingName("utf-8");  
@@ -128,6 +133,30 @@ public class MainActivity extends Activity implements OnClickListener {
 
     }
     
+    private OnSeekBarChangeListener seekListener = new OnSeekBarChangeListener() {
+		
+		@Override
+		public void onStopTrackingTouch(SeekBar seekBar) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void onStartTrackingTouch(SeekBar seekBar) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void onProgressChanged(SeekBar seekBar, int progress,
+				boolean fromUser) {
+			// TODO Auto-generated method stub
+			//Log.d("MainActivity", "progress = " + progress);
+			webaimView.loadUrl("javascript:setRotationSpeed('" + progress + "')");
+			
+		}
+	};
+    
     @JavascriptInterface
     public void startFunction() {
     	runOnUiThread(new Runnable() {
@@ -171,7 +200,6 @@ public class MainActivity extends Activity implements OnClickListener {
 			return true;
 		}
 		return false;
-    	
     }
 	
 	@Override

@@ -21,11 +21,13 @@ function onloadHandler()
    var canvas = document.getElementById('canvas');
    canvas.width = window.innerWidth;
    canvas.height = window.innerHeight;
+
    var k3dmain = new K3D.Controller(canvas, true);
    
    // generate 3D objects
    
    var obj1 = new K3D.K3DObject();
+
    with (obj1)
    {
       drawmode = "solid";
@@ -131,12 +133,13 @@ function onloadHandler()
    k3dmain.addK3DObject(objHtml);
    
    // add render loop callback
-   var ctx = canvas.getContext('2d');
-   var rotationOffset = 0;
-   var len = (canvas.height > canvas.width ? canvas.height : canvas.width) * 0.7;
-   k3dmain.clearBackground = false;
-   k3dmain.callback = function()
+   //var ctx = canvas.getContext('2d');
+   //var rotationOffset = 0;
+   //var len = (canvas.height > canvas.width ? canvas.height : canvas.width) * 0.7;
+   //k3dmain.clearBackground = false;
+   k3dmain.callback = function(speed)
    {
+      /*
       // manually clear bg - as we want to render some extra goodies
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
@@ -174,11 +177,11 @@ function onloadHandler()
       ctx.fill();
       ctx.restore();
       rotationOffset += 0.005;
-      
+      */
       // apply user interaction to rotation
       for (var i=0, objs=k3dmain.objects; i<objs.length; i++)
       {
-         objs[i].ophi += targetRotationX;
+         objs[i].ophi += targetRotationX*upSeep;
       }
       
       if (targetRotationX > -0.5) targetRotationX -= 0.05;
@@ -191,6 +194,10 @@ function onloadHandler()
    setInterval(function(){k3dmain.tick()}, 1000/60);
 }
 
+function setRotationSpeed(speed) {
+   upSeep = speed;
+}
+var upSeep = 0;
 // nifty drag/touch event capture code borrowed from Mr Doob http://mrdoob.com/
 var targetRotationX = 0;
 var targetRotationOnMouseDownX = 0;

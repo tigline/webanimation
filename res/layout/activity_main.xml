@@ -45,7 +45,11 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/ctrol_bt1"
         android:text="重新加载网页"/>
-    
+    <SeekBar 
+        android:id="@+id/speed_bt"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ctrol_bt2"/>
     
 	<Button 
         android:id="@+id/test_bt"
@@ -58,7 +62,7 @@
 	    android:id="@+id/tv_sv"
 	    android:layout_width="240dp"
 	    android:layout_height="wrap_content"
-	    android:layout_below="@+id/ctrol_bt2">
+	    android:layout_below="@+id/speed_bt">
 	    <TextView 
 	        android:id="@+id/tv"
 	        android:layout_width="match_parent"
@@ -69,7 +73,7 @@
 	
 	<WebView
 	    android:id="@+id/aimview"
-	    android:layout_width="540dp"
+	    android:layout_width="480dp"
 	    android:layout_height="match_parent"
 	    android:layout_alignParentRight="true" />
 	 
