@@ -21,7 +21,7 @@ public class MyObject {
     private WebView webView = null;  
   
     public MyObject(MainActivity htmlActivity, Handler handler) {  
-        this.webView = (WebView)htmlActivity.findViewById(R.id.aimview);  
+//        this.webView = (WebView)htmlActivity.findViewById(R.id.aimview);  
         this.handler = handler;  
     }  
     @JavascriptInterface  

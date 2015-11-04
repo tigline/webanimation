@@ -1,5 +1,6 @@
 package com.tcl.roselauncher.ui.webanimation;
 
+
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -14,6 +15,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.JavascriptInterface;
@@ -21,6 +23,7 @@ import android.webkit.ValueCallback;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
@@ -73,10 +76,29 @@ public class MainActivity extends Activity implements OnClickListener {
         ctrol_bt2.setOnClickListener(this);
         speed.setProgress(5);
         speed.setOnSeekBarChangeListener(seekListener);
+        webaimView = new WebView(this);
         
-        webaimView = (WebView) findViewById(R.id.aimview);
+
+        
+        RelativeLayout ll = (RelativeLayout) findViewById(R.id.animateview);
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(960,540);
+        layoutParams.setMargins(480, 270, 480, 270);
+        webaimView.setLayoutParams(layoutParams);
+		ll.addView(webaimView);
+		
+		webaimView.setPadding(webaimView.getPaddingLeft(), webaimView.getPaddingTop() + 200, 
+        		webaimView.getPaddingRight(), webaimView.getPaddingBottom());
+        //webaimView = (WebView) findViewById(R.id.aimview);
         webaimView.getSettings().setDefaultTextEncodingName("utf-8");  
         webaimView.getSettings().setJavaScriptEnabled(true);
+        webaimView.getSettings().setDomStorageEnabled(true);
+//        webaimView.getSettings().setSupportZoom(true); 
+        webaimView.getSettings().setUseWideViewPort(true); 
+        webaimView.getSettings().setLoadWithOverviewMode(true); 
+//	     // 设置出现缩放工具 
+//        webaimView.getSettings().setBuiltInZoomControls(true);
+//	     //扩大比例的缩放
+//        webaimView.getSettings().setUseWideViewPort(true);
         webaimView.setBackgroundColor(0);
 //        webaimView.setDefaultHandler(new DefaultHandler());
 //        webaimView.setWebChromeClient(new WebChromeClient() {
@@ -99,7 +121,7 @@ public class MainActivity extends Activity implements OnClickListener {
        // webaimView.loadUrl("https://www.baidu.com/");
         //webaimView.addJavascriptInterface(new MyObject(this,handler), "myObject");
         webaimView.setWebViewClient(new WebViewClient());
-        webaimView.loadUrl("file:///android_asset/webanimate/indexjavajs.html");
+        webaimView.loadUrl("file:///android_asset/webanimate/indexlogo.html");
         webaimView.addJavascriptInterface(this, "my");
         
         //webaimView.setWebViewClient(new AimWebViewClent());

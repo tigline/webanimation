@@ -19,11 +19,24 @@ public class AnimateWebView extends WebView {
 	public AnimateWebView(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
-		
+		init();
+	}
+	
+	private void init() {
+
 	}
 	
 	public void LoadWebFile(String URL) {
 		this.loadUrl(URL);
 	}
+	
+	public void ActiveJSFuntion() {
+		
+	}
+	
+	public void Translate() {
+		
+	}
+	
 	
 }

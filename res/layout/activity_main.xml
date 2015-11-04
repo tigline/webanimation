@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
-	
+	android:id="@+id/animateview"
     tools:context="${relativePackage}.${activityClass}" >
     
     <Button 
@@ -70,13 +70,13 @@
 	        android:layout_marginLeft="10dp"
 	        android:text="JS调用Android里的JAVA方法"/>
 	</ScrollView>
-	
+	<!-- 
 	<WebView
 	    android:id="@+id/aimview"
 	    android:layout_width="480dp"
 	    android:layout_height="match_parent"
 	    android:layout_alignParentRight="true" />
-	 
+	 --> 
     <!--  
     <com.tcl.roselauncher.ui.webanimation.BridgeWebView
         android:id="@+id/aimview"
