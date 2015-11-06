@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link rel="stylesheet" type="text/css" href="css/loaders.css">
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <style>
+        html {
+
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        #container {
+            width: 960px;
+
+            margin:0px auto;
+            position:absolute;
+            align-items: center;
+            justify-content: center;
+            top:50%;
+            left:50%;
+        }
+        .containers * {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+    <script language="JavaScript">
+        var a_source = new Array("loader-inner ball-scale-multiple","loader-inner ball-scale-ripple-multiple" ,
+                "loader-inner ball-clip-rotate-multiple" ,"loader-inner line-scale-pulse-out");
+        function changeCss(num) {
+            document.getElementById("container").className = a_source[num];
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <div id="container" class="loader-inner loader-inner line-scale-pulse-out">
+            <script type="text/javascript" src="js/loaders.css.js"></script>
+        </div>
+    </div>
+
+</body>
+</html>

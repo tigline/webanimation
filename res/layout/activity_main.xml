@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/hid_bt"
-        android:text="切换动画"/>
+        android:text="控制状态"/>
     
     <Button 
         android:id="@+id/ctrol_bt1"
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/change_bt"
-        android:text="调用  JS 方法"/>
+        android:text="切换动画"/>
     
     <Button 
         android:id="@+id/ctrol_bt2"

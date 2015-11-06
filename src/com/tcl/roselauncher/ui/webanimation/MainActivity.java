@@ -20,6 +20,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.ValueCallback;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
@@ -31,7 +32,8 @@ import android.widget.TextView;
 public class MainActivity extends Activity implements OnClickListener {
 
 	private final String TAG = "MainActivity";
-	private static int turn = 0;
+	private static int turn1 = 0;
+	private static int turn2 = 0;
 	//private BridgeWebView webaimView;
 	private WebView webaimView;
 	private Button showBt ,ctrol_bt1, change_bt;
@@ -78,23 +80,22 @@ public class MainActivity extends Activity implements OnClickListener {
         speed.setOnSeekBarChangeListener(seekListener);
         webaimView = new WebView(this);
         
-
-        
         RelativeLayout ll = (RelativeLayout) findViewById(R.id.animateview);
-        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(960,540);
-        layoutParams.setMargins(480, 270, 480, 270);
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(1080,1080);
+        layoutParams.setMargins(840, 0, 0, 0);
         webaimView.setLayoutParams(layoutParams);
 		ll.addView(webaimView);
 		
-		webaimView.setPadding(webaimView.getPaddingLeft(), webaimView.getPaddingTop() + 200, 
-        		webaimView.getPaddingRight(), webaimView.getPaddingBottom());
+
         //webaimView = (WebView) findViewById(R.id.aimview);
         webaimView.getSettings().setDefaultTextEncodingName("utf-8");  
         webaimView.getSettings().setJavaScriptEnabled(true);
-        webaimView.getSettings().setDomStorageEnabled(true);
+//        webaimView.getSettings().setDomStorageEnabled(true);
 //        webaimView.getSettings().setSupportZoom(true); 
+        webaimView.getSettings().setLoadWithOverviewMode(true);
         webaimView.getSettings().setUseWideViewPort(true); 
-        webaimView.getSettings().setLoadWithOverviewMode(true); 
+        webaimView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+         
 //	     // 设置出现缩放工具 
 //        webaimView.getSettings().setBuiltInZoomControls(true);
 //	     //扩大比例的缩放
@@ -121,7 +122,7 @@ public class MainActivity extends Activity implements OnClickListener {
        // webaimView.loadUrl("https://www.baidu.com/");
         //webaimView.addJavascriptInterface(new MyObject(this,handler), "myObject");
         webaimView.setWebViewClient(new WebViewClient());
-        webaimView.loadUrl("file:///android_asset/webanimate/indexlogo.html");
+        webaimView.loadUrl("file:///android_asset/webanimate/cssanimate.html");
         webaimView.addJavascriptInterface(this, "my");
         
         //webaimView.setWebViewClient(new AimWebViewClent());
@@ -284,45 +285,36 @@ public class MainActivity extends Activity implements OnClickListener {
 			animator.start();
 			break;
 		case R.id.ctrol_bt1:
-			webaimView.loadUrl("javascript:javacalljs()");
-			webaimView.loadUrl("javascript:javacalljswithargs(" + " 'come from JS' " + ")");
-//			Log.d("MainActivity","ctrol_bt1 OnClick");
-//			webaimView.loadUrl("javascript:updateHtml()");	
-//			webaimView.callHandler("functionInJs", "data from Java", new CallBackFunction() {
-//
-//				@Override
-//				public void onCallBack(String data) {
-//					// TODO Auto-generated method stub
-//					Log.i(TAG, "reponse data from js " + data);
-//				}
-//
-//			});
+			if (turn1 > 2) {
+				turn1 = 0;
+			}
+			switch (turn1) {
+			case 0:
+				webaimView.loadUrl("file:///android_asset/webanimate/indexbutterfly.html");
+				break;
+			case 1:
+				webaimView.loadUrl("file:///android_asset/webanimate/indexlogo.html");
+				break;
+			case 2:
+				webaimView.loadUrl("file:///android_asset/webanimate/cssanimate.html");
+				break;
+			default:
+				break;
+			}
+			turn1++;
 			break;
 		case R.id.ctrol_bt2:
 			Log.d("MainActivity","ctrol_bt2 OnClick");
 			webaimView.loadUrl("file:///android_asset/webanimate/cartoon.html");
 			break;
 		case R.id.change_bt:
-				if (turn > 3) {
-					turn = 0;
+				if (turn2 > 3) {
+					turn2 = 0;
 				}
-				switch (turn) {
-				case 0:
-					webaimView.loadUrl("file:///android_asset/webanimate/indexbutterfly.html");
-					break;
-				case 1:
-					webaimView.loadUrl("file:///android_asset/webanimate/indexcircle.html");
-					break;
-				case 2:
-					webaimView.loadUrl("file:///android_asset/webanimate/indexjavajs.html");
-					break;
-				case 3:
-					webaimView.loadUrl("file:///android_asset/webanimate/indexlogo.html");
-					break;
-				default:
-					break;
-				}
-				turn++;
+
+				webaimView.loadUrl("javascript:changeCss('" + turn2 + "')");
+				turn2++;
+				
 			
 		default:
 			break;
